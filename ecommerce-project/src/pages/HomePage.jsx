@@ -1,18 +1,19 @@
 import { Header } from '../components/Header'
-import { useEffect , useState} from 'react'
+import { useEffect, useState } from 'react'
 import './HomePage.css'
 import axios from 'axios'
 import { formatMoney } from '../utils/money'
-export function HomePage({cart}) {
-  const[products, setProducts]=useState([]);
- 
-  useEffect(() =>{
- axios.get('/api/products').then((response) => {
-    setProducts(response.data)
-  });
-  
-  },[])
- 
+export function HomePage({ cart }) {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getHomeData = async () => {
+      const response = await axios.get('/api/products')
+      setProducts(response.data)
+    };
+    getHomeData();
+  }, []);
+
   return (
     <>
       <Header cart={cart} />
@@ -65,7 +66,12 @@ export function HomePage({cart}) {
                   Added
                 </div>
 
-                <button className="add-to-cart-button button-primary">
+                <button className="add-to-cart-button button-primary" onClick={()=>{
+                  axios.post('/api/cart-items',{
+                    productId:product.id,
+                    quantity:1
+                  });
+                }} >
                   Add to Cart
                 </button>
               </div>

@@ -50,7 +50,7 @@ export function CheckoutPage({ cart }) {
 
                         })
                         return (
-                        <>
+                        
                             <div key={cartItem.productId} className="cart-item-container">
                                 <div className="delivery-date">
                                     Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd,MMMM D')}
@@ -90,7 +90,7 @@ export function CheckoutPage({ cart }) {
                                                 priceString = `${formatMoney(deliveryOption.priceCents)}`
                                             }
                                             return (
-                                                <>
+                                                
                                                     <div key={deliveryOption.id} className="delivery-option">
                                                         <input type="radio"
                                                             checked={deliveryOption.id === cartItem.deliveryOptionId}
@@ -106,12 +106,12 @@ export function CheckoutPage({ cart }) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </>
+                                                
                                             );
                                         })}
                                     </div>
                                 </div>
-                            </div></>
+                            </div>
                         )
                     })}
                 </div>
